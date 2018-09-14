@@ -6,6 +6,11 @@
  t)
 (package-initialize)
 
+;; Install use-package if needed
+(dolist (package '(use-package))
+  (unless (package-installed-p package)
+    (package-install package)))
+
 ;; Initialize use-package to automatically download packages
 (eval-when-compile
   (require 'use-package))
