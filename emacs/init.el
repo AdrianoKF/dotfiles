@@ -1,12 +1,41 @@
 (server-start)
 
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (add-to-list
-   'package-archives
-   '("melpa" . "http://melpa.org/packages/")
-   t)
-  (package-initialize))
+;; Load packages from ~/.emacs.d/lisp
+(add-to-list 'load-path "~/.emacs.d/lisp")
+
+;; Automatically load everything under ~/.emacs.d/my-lisp
+(require 'load-directory)
+(load-directory "~/.emacs.d/my-lisp/")
+
+;; Autoload themes directory
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'monokai t)
+
+;; Use UTF-8 as default file encoding
+(set-language-environment "UTF-8")
+
+;; fakecygpty for compatibility with Cygwin
+;; See: https://github.com/d5884/fakecygpty
+;; (require 'fakecygpty)
+;; (fakecygpty-activate)
+;; (setq fakecygpty-program "~/.emacs.d/bin/fakecygpty.exe")
+;; (setq fakecygpty-qkill "~/.emacs.d/bin/qkill.exe")
+
+;; Move between windows with Alt+<cursor>
+(windmove-default-keybindings 'meta)
+
+;; Powerline status bar
+;; (require 'powerline)
+;; (setq powerline-arrow-shape 'arrow)
+;; (powerline-default-theme)
+
+;; Neotree file navigator
+;; (require 'neotree)
+;; (global-set-key [f12] 'neotree-toggle)
+
+;;; RefTeX
+;; (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+;; (setq reftex-plug-into-AUCTeX t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -29,15 +58,17 @@
 	 (output-dvi "Yap")
 	 (output-pdf "SumatraPDF")
 	 (output-html "start"))))
- '(custom-enabled-themes (quote (leuven)))
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(custom-enabled-themes (quote (monokai)))
  '(custom-safe-themes
    (quote
-	("bb749a38c5cb7d13b60fa7fc40db7eced3d00aa93654d150b9627cabd2d9b361" "a3f85ee6e877f02e239d2a6633a5b8263b53113751aca549aa4c5f458829c95d" default)))
+	("2925ed246fb757da0e8784ecf03b9523bccd8b7996464e587b081037e0e98001" "bb749a38c5cb7d13b60fa7fc40db7eced3d00aa93654d150b9627cabd2d9b361" "a3f85ee6e877f02e239d2a6633a5b8263b53113751aca549aa4c5f458829c95d" default)))
  '(gradle-use-gradlew t)
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-	(cmake-mode yaml-mode ansible creamsody-theme auctex auctex-latexmk langtool org-pandoc org-iv org-beautify-theme org-ac markdown-mode groovy-mode gradle-mode ac-math)))
+	(use-package use-package-ensure-system-package magit magit-todos powerline neotree ox-pandoc pandoc pandoc-mode adoc-mode cmake-mode yaml-mode ansible creamsody-theme auctex auctex-latexmk langtool org-pandoc org-iv org-beautify-theme org-ac markdown-mode groovy-mode gradle-mode ac-math)))
  '(pos-tip-background-color "#1A3734")
  '(pos-tip-foreground-color "#FFFFC8")
  '(preview-gs-command "C:/Program Files/gs/gs9.18/bin/gswin64c.exe")
@@ -48,32 +79,41 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "Source Code Pro" :foundry "outline" :slant normal :weight normal :height 98 :width normal)))))
 
 ;; Keep backup files in separate directory
 (setq backup-directory-alist `(("." . "~/.emacs.d/saves")))
 
 ;; AucTeX setup
-(setq TeX-parse-self t) ; Enable parse on load.
-(setq TeX-auto-save t) ; Enable parse on save.
+;; (setq TeX-parse-self t) ; Enable parse on load.
+;; (setq TeX-auto-save t) ; Enable parse on save.
 
 ;; Auto-indentation by default
 (electric-indent-mode 1)
 
 ;; Flyspell mode by default
-; Work around Emacs64 builds with Cygwin hunspell - http://gromnitsky.blogspot.de/2016/09/emacs-251-hunspell.html
-(setq ispell-program-name "c:/cygwin64/bin/hunspell.exe")
-(setq ispell-hunspell-dict-paths-alist
-      '(("de_DE" "C:/cygwin64/usr/share/myspell/de_DE.aff")
-		("en_US" "C:/cygwin64/usr/share/myspell/en_US.aff")
-        ("en_GB" "C:/cygwin64/usr/share/myspell/en_GB.aff")))
+;; (setq flyspell-issue-message-flag ())
+;; (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+;; (add-hook 'LaTeX-mode-hook 'flyspell-buffer)
+
+(global-set-key (kbd "<f8>") 'ispell-word)
+(global-set-key (kbd "C-S-<f8>") 'flyspell-mode)
+(global-set-key (kbd "C-M-<f8>") 'flyspell-buffer)
+(global-set-key (kbd "C-<f8>") 'flyspell-check-previous-highlighted-word)
+(defun flyspell-check-next-highlighted-word ()
+  "Custom function to spell check next highlighted word"
+  (interactive)
+  (flyspell-goto-next-error)
+  (ispell-word)
+  )
+(global-set-key (kbd "M-<f8>") 'flyspell-check-next-highlighted-word)
 
 ;; Set up LaTeX auto-completion
-(require 'auto-complete)
-(global-auto-complete-mode t)
-(ac-config-default)
+;; (require 'auto-complete)
+;; (global-auto-complete-mode t)
+;; (ac-config-default)
 
-(add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
+;; (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
 
 (defun ac-latex-mode-setup ()         ; add ac-sources to default ac-sources
   (setq ac-sources
@@ -81,36 +121,30 @@
                ac-sources)))
 
 
-; Turn on RefTeX for AUCTeX, http://www.gnu.org/s/auctex/manual/reftex/reftex_5.html
-;(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-; Make RefTeX interact with AUCTeX, http://www.gnu.org/s/auctex/manual/reftex/AUCTeX_002dRefTeX-Interface.html
-(setq reftex-plug-into-AUCTeX t)
+;; (add-hook 'LaTeX-mode-hook
+;; 		  (lambda ()
+;; 			'turn-on-reftex
+;; 			'ac-latex-mode-setup
+;; 			(reftex-mode t)
+;;  ))
 
-(add-hook 'LaTeX-mode-hook
-		  (lambda ()
-			'turn-on-reftex
-			'ac-latex-mode-setup
-			(reftex-mode t)
-			(flyspell-mode t)
- ))
-
-(ac-flyspell-workaround)
+;; (ac-flyspell-workaround)
 
 ;; Enable auctex-latexmk mode
-(require 'auctex-latexmk)
-(auctex-latexmk-setup)
-(setq auctex-latexmk-inherit-TeX-PDF-mode t)
+;; (require 'auctex-latexmk)
+;; (auctex-latexmk-setup)
+;; (setq auctex-latexmk-inherit-TeX-PDF-mode t)
 
 ;; Use C-x f to open file under cursor
 (global-set-key (kbd "C-x f") 'find-file-at-point)
 
-(require 'langtool)
-(setq langtool-language-tool-jar "~/Desktop/Programs/LanguageTool-3.5/languagetool-commandline.jar"
-      langtool-mother-tongue "en-US"
-      langtool-disabled-rules '("WHITESPACE_RULE"
-                                "EN_UNPAIRED_BRACKETS"
-                                "COMMA_PARENTHESIS_WHITESPACE"
-                                "EN_QUOTES"))
+;; LanguageTool spell/grammar checking
+;; (require 'langtool)
+;; (global-set-key (kbd "<f4>") 'langtool-check)
+;; (global-set-key (kbd "<f5>") 'langtool-correct-buffer)
+;; (global-set-key "\C-x4W" 'langtool-check-done)
+;; (global-set-key "\C-x4l" 'langtool-switch-default-language)
+;; (global-set-key "\C-x44" 'langtool-show-message-at-point)
 
 ;; Integrate RefTeX and cleveref
 (eval-after-load
@@ -130,3 +164,15 @@
        '("cpageref" TeX-arg-ref)
        '("Cpageref" TeX-arg-ref)))))
 
+
+;; KOMA-Script export for org-mode
+(with-eval-after-load 'ox-latex
+  (add-to-list 'org-latex-classes
+			   '("koma-article"
+				 "\\documentclass{scrartcl}"
+				 ("\\section{%s}" . "\\section*{%s}")
+				 ("\\subsection{%s}" . "\\subsection*{%s}")
+				 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+				 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+				 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  )
