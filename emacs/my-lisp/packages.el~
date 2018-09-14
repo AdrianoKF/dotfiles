@@ -1,0 +1,41 @@
+;; Use MELPA repository
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list
+   'package-archives
+   '("melpa" . "http://melpa.org/packages/")
+   t)
+  (package-initialize))
+
+;; Initialize use-package to automatically download packages
+(eval-when-compile
+  (require 'use-package))
+
+;; ----
+;; use-package dependencies
+;; ----
+(use-package auctex
+			 :ensure t)
+
+(use-package auctex-latexmk
+			 :ensure t)
+
+(use-package langtool
+			 :ensure t)
+
+(use-package magit
+			 :ensure t)
+(use-package magit-todos
+			 :ensure t)
+
+(use-package markdown-mode
+			 :ensure t)
+
+(use-package neotree
+			 :ensure t)
+
+(use-package powerline
+			 :ensure t)
+
+(use-package creamsody-theme
+			 :ensure t)
