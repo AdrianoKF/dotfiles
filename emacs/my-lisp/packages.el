@@ -28,14 +28,21 @@
   (add-to-list 'ac-modes 'latex-mode)   ; make auto-complete aware of `latex-mode`
   (ac-flyspell-workaround))
 
+(use-package reftex
+  :defer t
+  :commands turn-on-reftex
+  :config (setq reftex-plug-into-AUCTeX t))
+
 (use-package latex
   :ensure auctex
+  :defer t
+  :mode ("\\.tex\\'" . latex-mode)
   :init
-  (setq reftex-plug-into-AUCTeX t)
   (setq TeX-parse-self t) ; Enable parse on load.
   (setq TeX-auto-save t) ; Enable parse on save.
+  :config
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   :hook (
-		 (LaTeX-mode . turn-on-reftex)
 		 (LaTeX-mode . ac-mode-latex-setup)
 		 (LaTeX-mode . (reftex-mode t))
 		 (LaTeX-mode . flyspell-mode)

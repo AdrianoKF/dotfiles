@@ -33,10 +33,6 @@
 ;; (require 'neotree)
 ;; (global-set-key [f12] 'neotree-toggle)
 
-;;; RefTeX
-;; (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-;; (setq reftex-plug-into-AUCTeX t)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
