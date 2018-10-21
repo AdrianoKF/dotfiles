@@ -14,6 +14,9 @@
 ;; Use UTF-8 as default file encoding
 (set-language-environment "UTF-8")
 
+;; ISpell location (using Cygwin)
+(setq ispell-program-name "c:/cygwin64/bin/aspell.exe")
+
 ;; fakecygpty for compatibility with Cygwin
 ;; See: https://github.com/d5884/fakecygpty
 ;; (require 'fakecygpty)
@@ -64,11 +67,12 @@
  '(custom-safe-themes
    (quote
 	("2925ed246fb757da0e8784ecf03b9523bccd8b7996464e587b081037e0e98001" "bb749a38c5cb7d13b60fa7fc40db7eced3d00aa93654d150b9627cabd2d9b361" "a3f85ee6e877f02e239d2a6633a5b8263b53113751aca549aa4c5f458829c95d" default)))
+ '(debug-on-error t)
  '(gradle-use-gradlew t)
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-	(use-package use-package-ensure-system-package magit magit-todos powerline neotree ox-pandoc pandoc pandoc-mode adoc-mode cmake-mode yaml-mode ansible creamsody-theme auctex auctex-latexmk langtool org-pandoc org-iv org-beautify-theme org-ac markdown-mode groovy-mode gradle-mode ac-math)))
+	(auto-complete-auctex use-package use-package-ensure-system-package magit magit-todos powerline neotree ox-pandoc pandoc pandoc-mode adoc-mode cmake-mode yaml-mode ansible creamsody-theme auctex auctex-latexmk langtool org-pandoc org-iv org-beautify-theme org-ac markdown-mode groovy-mode gradle-mode ac-math)))
  '(pos-tip-background-color "#1A3734")
  '(pos-tip-foreground-color "#FFFFC8")
  '(preview-gs-command "C:/Program Files/gs/gs9.18/bin/gswin64c.exe")
@@ -79,7 +83,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Source Code Pro" :foundry "outline" :slant normal :weight normal :height 98 :width normal)))))
+ '(default ((t (:family "PragmataPro Mono" :foundry "outline" :slant normal :weight normal :height 98 :width normal)))))
 
 ;; Keep backup files in separate directory
 (setq backup-directory-alist `(("." . "~/.emacs.d/saves")))

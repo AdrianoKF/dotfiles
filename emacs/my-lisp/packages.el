@@ -31,15 +31,32 @@
 (use-package latex
   :ensure auctex
   :init
-  (setq reftex-plug-into-AUCTeX t)
+  :mode ("\\.tex\\'" . latex-mode)
+  :config
   (setq TeX-parse-self t) ; Enable parse on load.
   (setq TeX-auto-save t) ; Enable parse on save.
+  (setq-default TeX-master nil)
+  (setq reftex-plug-into-AUCTeX t)
   :hook (
 		 (LaTeX-mode . turn-on-reftex)
-		 (LaTeX-mode . ac-mode-latex-setup)
-		 (LaTeX-mode . (reftex-mode t))
+     (LaTeX-mode . reftex-isearch-minor-mode)
 		 (LaTeX-mode . flyspell-mode)
+     (LaTeX-mode . visual-line-mode)
 		 (LaTeX-mode . flyspell-buffer)))
+
+(use-package reftex
+  :after latex
+  :bind ("C-c =" . reftex-toc)
+  :config
+  (setq reftex-cite-prompt-optional-args t) ; Prompt for empty optional arguments in cite
+  ;; https://www.gnu.org/software/emacs/manual/html_mono/reftex.html
+  (setq reftex-enable-partial-scans t)
+  (setq reftex-keep-temporary-buffers nil)
+  (setq reftex-save-parse-info t))
+  
+(use-package auto-complete-auctex
+  :ensure t
+  :after latex)
 
 (use-package auctex-latexmk
   :ensure t
