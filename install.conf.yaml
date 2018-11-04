@@ -1,3 +1,8 @@
-- clean: []
-- link: {}
-- shell: []
+- clean: ['~', '~/.config']
+- link:
+        ~/.config/i3:
+                create: true
+        ~/.zshrc:
+                create: true
+- shell:
+        - git submodule sync --recursive
