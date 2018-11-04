@@ -4,6 +4,8 @@
                 create: true
         ~/.config/i3:
                 create: true
+        ~/.config/polybar:
+                create: true
         ~/.zshrc:
                 create: true
 - shell:
