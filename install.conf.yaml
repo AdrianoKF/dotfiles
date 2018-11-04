@@ -1,5 +1,6 @@
 - clean: ['~', '~/.config']
 - link:
+        ~/scripts:
         ~/.gitconfig:
                 create: true
         ~/.config/i3:
