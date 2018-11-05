@@ -118,7 +118,7 @@ exec --no-startup-id nm-applet &
 exec --no-startup-id blueman-applet &
 exec --no-startup-id redshift-gtk &
 exec_always --no-startup-id ${HOME}/scripts/polybar.sh
-exec --no-startup-id setxkbmap de,us -option grp:lalt_lshift_toggle
+exec --no-startup-id setxkbmap us,de -option grp:lalt_lshift_toggle
 
 # PROTIP: You can also dynamically set dmenu's colors this way:
 bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"

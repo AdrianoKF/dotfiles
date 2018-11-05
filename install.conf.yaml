@@ -7,6 +7,8 @@
                 create: true
         ~/.config/i3:
                 create: true
+        ~/.config/termite:
+                create: true
         ~/.config/polybar:
                 create: true
         ~/.zshrc:
