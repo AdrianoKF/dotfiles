@@ -1,0 +1,8 @@
+[options]
+font = Source Code Variable 10
+browser = x-www-browser
+clickable_url = true
+dynamic_title = true
+
+[colors]
+background = rgba(64,64,64,0.8)
