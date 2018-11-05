@@ -3,6 +3,8 @@
         ~/scripts:
         ~/.gitconfig:
                 create: true
+        ~/.config/compton.conf:
+                create: true
         ~/.config/i3:
                 create: true
         ~/.config/polybar:
