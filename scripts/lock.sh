@@ -2,10 +2,10 @@
 
 B='#00000000'  # blank
 C='#ffffff22'  # clear ish
-D='#ff00ffcc'  # default
-T='#ee00eeee'  # text
+D="$(xrdb -query | grep '*.background' | cut -f 2)cc"  # default
+T="$(xrdb -query | grep '*.foreground' | cut -f 2)ee"  # text
 W='#880000bb'  # wrong
-V='#bb00bbbb'  # verifying
+V="$(xrdb -query | grep '*.color1:' | cut -f 2)bb"  # verifying
 
 i3lock \
 --insidevercolor=$C   \
@@ -14,7 +14,7 @@ i3lock \
 --insidewrongcolor=$C \
 --ringwrongcolor=$W   \
 \
---insidecolor=$B      \
+--insidecolor=$D      \
 --ringcolor=$D        \
 --linecolor=$B        \
 --separatorcolor=$D   \
@@ -24,10 +24,9 @@ i3lock \
 --timecolor=$T        \
 --datecolor=$T        \
 --layoutcolor=$T      \
---keyhlcolor=$W       \
---bshlcolor=$W        \
+--keyhlcolor=$V       \
+--bshlcolor=$V        \
 \
---screen 1            \
 --blur 10              \
 --clock               \
 --indicator           \
