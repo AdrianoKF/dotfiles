@@ -1,5 +1,5 @@
 [options]
-font = Source Code Variable 10
+font = Source Code Pro 10
 browser = x-www-browser
 clickable_url = true
 dynamic_title = true
