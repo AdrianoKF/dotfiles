@@ -64,6 +64,7 @@ ZSH_THEME="agnoster"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  ssh-agent
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -100,8 +101,11 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$PATH:$HOME/.local/bin"
 
 ## WAL -- color schemes
-# Import colorscheme from 'wal' asynchronously
-(cat ~/.cache/wal/sequences &)
 
-# To add support for TTYs this line can be optionally added.
-source ~/.cache/wal/colors-tty.sh
+if [[ -d $HOME/.cache/wal ]]; then
+  # Import colorscheme from 'wal' asynchronously
+  (cat ~/.cache/wal/sequences &)
+
+  # To add support for TTYs this line can be optionally added.
+  source ~/.cache/wal/colors-tty.sh
+fi
