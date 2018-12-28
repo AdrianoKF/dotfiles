@@ -286,14 +286,14 @@ battery = BAT0
 adapter = AC0
 full-at = 99
 
-format-charging = <ramp-capacity> chg <label-charging>
+format-charging = <ramp-capacity>  <label-charging>
 format-charging-underline = #ffb52a
 
-format-discharging = <ramp-capacity>  <label-discharging>
+format-discharging = <ramp-capacity>  <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
 format-full = <label-full>
-label-full = ""
+label-full = ""
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = #0f0
 
