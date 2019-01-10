@@ -101,11 +101,15 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$PATH:$HOME/.local/bin"
 
 ## WAL -- color schemes
-
 if [[ -d $HOME/.cache/wal ]]; then
   # Import colorscheme from 'wal' asynchronously
   (cat ~/.cache/wal/sequences &)
 
   # To add support for TTYs this line can be optionally added.
   source ~/.cache/wal/colors-tty.sh
+fi
+
+# Rust / Cargo
+if [[ -f ${HOME}/.cargo/env ]]; then
+  source ${HOME}/.cargo/env
 fi
