@@ -82,6 +82,9 @@ bindsym XF86KbdBrightnessDown exec --no-startup-id ${HOME}/scripts/keyboard-back
 bindsym XF86KbdBrightnessUp exec --no-startup-id ${HOME}/scripts/keyboard-backlight.sh up
 ## end MEDIA KEYS
 
+## Screenshots
+bindsym Print exec --no-startup-id deepin-screenshot
+
 bindsym $mod+ctrl+l exec ${HOME}/scripts/lock.sh
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
