@@ -65,6 +65,7 @@ ZSH_THEME="agnoster"
 plugins=(
   git
   ssh-agent
+  emacs
 )
 
 source $ZSH/oh-my-zsh.sh
