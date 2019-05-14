@@ -122,6 +122,7 @@ exec --no-startup-id wal -R
 exec --no-startup-id nm-applet &
 exec --no-startup-id blueman-applet &
 exec --no-startup-id redshift-gtk &
+exec --no-startup-id udiskie -2 --tray&
 exec_always --no-startup-id ${HOME}/scripts/polybar.sh
 exec --no-startup-id setxkbmap us,de -option grp:lalt_lshift_toggle
 
