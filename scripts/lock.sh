@@ -27,7 +27,7 @@ i3lock \
 --keyhlcolor=$V       \
 --bshlcolor=$V        \
 \
---blur 10              \
+--blur 20              \
 --clock               \
 --indicator           \
 --timestr="%H:%M:%S"  \
