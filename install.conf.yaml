@@ -1,5 +1,6 @@
 - clean: ['~', '~/.config']
 - link:
+        ~/.xbindkeysrc: xbindkeys
         ~/scripts:
         ~/.emacs.d/lisp: emacs/lisp
         ~/.emacs.d/my-lisp: emacs/my-lisp
