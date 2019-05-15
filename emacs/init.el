@@ -3,6 +3,9 @@
 ;; Load packages from ~/.emacs.d/lisp
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
+;; mu4e email client
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
+
 ;; Automatically load everything under ~/.emacs.d/my-lisp
 (require 'load-directory)
 (load-directory "~/.emacs.d/my-lisp/")
