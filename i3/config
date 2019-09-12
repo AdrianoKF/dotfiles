@@ -85,8 +85,9 @@ bindsym XF86KbdBrightnessUp exec --no-startup-id ${HOME}/scripts/keyboard-backli
 ## Screenshots
 bindsym Print exec --no-startup-id deepin-screenshot
 
-## Lock screen
+## Lock screen / autolock
 bindsym $mod+Control+l exec ${HOME}/scripts/lock.sh
+exec xautolock -time 10 -locker ${HOME}/scripts/lock.sh
 
 ## Rofi: Window switcher, SSH, app launcher
 bindsym $mod+Tab exec rofi -show window
