@@ -85,7 +85,16 @@ bindsym XF86KbdBrightnessUp exec --no-startup-id ${HOME}/scripts/keyboard-backli
 ## Screenshots
 bindsym Print exec --no-startup-id deepin-screenshot
 
-bindsym $mod+ctrl+l exec ${HOME}/scripts/lock.sh
+## Lock screen
+bindsym $mod+Control+l exec ${HOME}/scripts/lock.sh
+
+## Rofi: Window switcher, SSH, app launcher
+bindsym $mod+Tab exec rofi -show window
+bindsym $mod+Shift+s exec rofi -show ssh
+bindsym $mod+Control+r exec rofi -show drun
+
+## Safe screen display fallback
+bindsym $mod+Control+Shift+s exec ${HOME}/scripts/fallback-monitor.sh
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
