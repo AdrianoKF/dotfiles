@@ -1,0 +1,19 @@
+#!/bin/bash -x
+
+config="$1"
+
+case "$config" in
+    docked)
+        primary="DP1-1"
+        secondary="DP1-2"
+        ;;
+    mobile)
+        primary="eDP1"
+        ;;
+esac
+
+i3-msg workspace 1
+i3-msg restart
+
+wal -R
+$HOME/scripts/polybar.sh
