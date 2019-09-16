@@ -16,4 +16,4 @@ i3-msg workspace 1
 i3-msg restart
 
 wal -R
-$HOME/scripts/polybar.sh
+$HOME/scripts/polybar.sh &
