@@ -126,7 +126,7 @@ client.placeholder      $bg     $bg     $fg  $bg       $bg
 client.background       $bg
 
 # AUTOSTART
-# exec --no-startup-id autorandr --change
+exec --no-startup-id autorandr --change
 exec --no-startup-id compton -b
 exec --no-startup-id wal -R
 exec --no-startup-id nm-applet &
