@@ -66,6 +66,7 @@ plugins=(
   git
   ssh-agent
   emacs
+  kubectl
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -115,7 +116,7 @@ if [[ -f ${HOME}/.cargo/env ]]; then
   source ${HOME}/.cargo/env
 fi
 
-if [[ -d ${HOME}/miniconda ]]; then
+if [[ -d ${HOME}/miniconda3 ]]; then
 	# >>> conda initialize >>>
 	# !! Contents within this block are managed by 'conda init' !!
 	__conda_setup="$('/home/adriano/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -123,9 +124,9 @@ if [[ -d ${HOME}/miniconda ]]; then
 	    eval "$__conda_setup"
 	else
 	    if [ -f "/home/adriano/miniconda3/etc/profile.d/conda.sh" ]; then
-	        . "/home/adriano/miniconda3/etc/profile.d/conda.sh"
+# . "/home/adriano/miniconda3/etc/profile.d/conda.sh"  # commented out by conda initialize
 	    else
-	        export PATH="/home/adriano/miniconda3/bin:$PATH"
+# export PATH="/home/adriano/miniconda3/bin:$PATH"  # commented out by conda initialize
 	    fi
 	fi
 	unset __conda_setup
