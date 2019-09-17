@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Bail out on error
-set -e
-
 eDP_STATUS=$(</sys/class/drm/card0/card0-eDP-1/status)
 DP_LEFT_STATUS=$(</sys/class/drm/card0/card0-DP-2/status)
 DP_RIGHT_STATUS=$(</sys/class/drm/card0/card0-DP-3/status)
