@@ -17,11 +17,11 @@
 ;==========================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #222
+background = ${xrdb:background:#222}
+;background = #222
 background-alt = #444
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
+foreground = ${xrdb:foreground:#ffffff}
+;foreground = #dfdfdf
 foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
@@ -62,9 +62,9 @@ modules-left = i3
 modules-center = spotify
 modules-right = pulseaudio xkeyboard filesystem backlight-acpi memory cpu wlan eth battery temperature date powermenu
 
-tray-position = right
-tray-padding = 2
-;tray-background = #0063ff
+tray-position = ${env:TRAY_POSITION:right}
+tray-padding = 4
+tray-background = ${colors.background}
 
 ;wm-restack = bspwm
 ;wm-restack = i3
