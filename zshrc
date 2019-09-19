@@ -132,3 +132,8 @@ if [[ -d ${HOME}/miniconda3 ]]; then
 	unset __conda_setup
 	# <<< conda initialize <<<
 fi
+
+## Yarn path
+if [ -x "/usr/bin/yarn" ]; then
+  export PATH="$(yarn global bin):$PATH"
+fi
