@@ -59,7 +59,7 @@ font-1 = "Font Awesome:style=Regular:pixelsize=10:antialias=true;1"
 font-2 = siji:pixelsize=10;1
 
 modules-left = i3
-modules-center = spotify
+modules-center = ; spotify
 modules-right = pulseaudio xkeyboard filesystem backlight-acpi memory cpu wlan eth battery temperature date powermenu
 
 tray-position = ${env:TRAY_POSITION:right}
@@ -372,8 +372,14 @@ type = custom/script
 interval = 1
 format-prefix = " "
 format = <label>
-exec = ~/scripts/spotify_status.py -f '{artist} - {song}'
 format-underline = #1db954
+label-maxlen = 64
+label-padding = 2
+# exec = ~/scripts/spotify_status.py -f '{artist} - {song}'
+# exec = ~/scripts/player-icon.sh
+exec = playerctl metadata --format="{{emoji(status)}} {{xesam:artist}} - {{xesam:title}}" -F 2>/dev/null
+exec-if = [[ -x /usr/bin/playerctl ]] && pgrep -x spotify
+tail = true
 
 [settings]
 screenchange-reload = true
