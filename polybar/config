@@ -57,9 +57,10 @@ module-margin-right = 2
 font-0 = "PragmataPro:style=Regular:pixelsize=9:antialias=true;1"
 font-1 = "Font Awesome:style=Regular:pixelsize=10:antialias=true;1"
 font-2 = siji:pixelsize=10;1
+font-3 = "Source Code Pro:style=Regular:pixelsize=9:antialias=true;1"
 
-modules-left = i3
-modules-center = ; spotify
+modules-left = i3 title
+modules-center = spotify
 modules-right = pulseaudio xkeyboard filesystem backlight-acpi memory cpu wlan eth battery temperature date powermenu
 
 tray-position = ${env:TRAY_POSITION:right}
@@ -367,9 +368,15 @@ menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
+[module/title]
+type = internal/xwindow
+label-maxlen = 64
+label = %title:64%
+
 [module/spotify]
 type = custom/script
 interval = 1
+label-font = 4
 format-prefix = " "
 format = <label>
 format-underline = #1db954
