@@ -1,0 +1,3 @@
+rofi.theme: /usr/share/rofi/themes/arthur.rasi
+rofi.modi:  ssh,window,run,combi,drun
+rofi.terminal:  termite

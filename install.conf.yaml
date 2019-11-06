@@ -2,6 +2,7 @@
 - link:
         ~/.xbindkeysrc: xbindkeys
         ~/scripts:
+        ~/.config/rofi: rofi
         ~/.config/autorandr: autorandr
         ~/.emacs.d/lisp: emacs/lisp
         ~/.emacs.d/my-lisp: emacs/my-lisp
