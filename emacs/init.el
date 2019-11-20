@@ -82,7 +82,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "PragmataPro Mono" :foundry "outline" :slant normal :weight normal :height 98 :width normal)))))
+ '(default ((t (:family "Source Code Pro" :foundry "ADBO" :slant normal :weight normal :height 81 :width normal)))))
 
 ;; Keep backup files in separate directory
 (setq backup-directory-alist `(("." . "~/.emacs.d/saves")))
