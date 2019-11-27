@@ -66,6 +66,8 @@ plugins=(
   git
   ssh-agent
   emacs
+  docker
+  docker-compose
   kubectl
 )
 
