@@ -11,8 +11,8 @@
 	while pgrep -u $UID -x polybar >/dev/null; do sleep 0.5; done
 
 	# Preferred output
-	preferred_tray_output=DP1-1
-	fallback_tray_output=eDP1
+	preferred_tray_output=DP-2
+	fallback_tray_output=DP-0
 
 	BAR_NAME=top
 
