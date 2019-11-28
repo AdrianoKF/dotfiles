@@ -30,7 +30,7 @@ alert = #bd2c40
 [bar/top]
 monitor = ${env:MONITOR:}
 width = 100%
-height = 27
+height = 24
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 6.0
@@ -54,10 +54,10 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = "PragmataPro:style=Regular:pixelsize=9:antialias=true;1"
-font-1 = "Font Awesome:style=Regular:pixelsize=10:antialias=true;1"
-font-2 = siji:pixelsize=10;1
-font-3 = "Source Code Pro:style=Regular:pixelsize=9:antialias=true;1"
+font-0 = "PragmataPro:style=Regular:pixelsize=8:antialias=true;1"
+font-1 = "Font Awesome:style=Regular:pixelsize=9:antialias=true;1"
+font-2 = siji:pixelsize=9;1
+font-3 = "Source Code Pro:style=Regular:pixelsize=8:antialias=true;1"
 
 modules-left = i3 title
 modules-center = spotify
