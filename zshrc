@@ -110,7 +110,9 @@ if [[ -d $HOME/.cache/wal ]]; then
   (cat ~/.cache/wal/sequences &)
 
   # To add support for TTYs this line can be optionally added.
-  source ~/.cache/wal/colors-tty.sh
+  if [[ -f $HOME/.cache/wal/colors-tty.sh ]]; then
+    source $HOME/.cache/wal/colors-tty.sh
+  fi
 fi
 
 # Rust / Cargo
