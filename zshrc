@@ -107,7 +107,10 @@ export PATH="$PATH:$HOME/.local/bin"
 ## WAL -- color schemes
 if [[ -d $HOME/.cache/wal ]]; then
   # Import colorscheme from 'wal' asynchronously
-  (cat ~/.cache/wal/sequences &)
+  # (cat ~/.cache/wal/sequences &)
+
+  # Restore wal settings
+  wal -r
 
   # To add support for TTYs this line can be optionally added.
   if [[ -f $HOME/.cache/wal/colors-tty.sh ]]; then
@@ -140,4 +143,9 @@ fi
 ## Yarn path
 if [ -x "/usr/bin/yarn" ]; then
   export PATH="$(yarn global bin):$PATH"
+fi
+
+## Termite VTE setup
+if [[ -f /etc/profile.d/vte.sh ]]; then
+  source /etc/profile.d/vte.sh
 fi
