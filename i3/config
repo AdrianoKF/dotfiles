@@ -92,7 +92,7 @@ exec xautolock -time 10 -locker ${HOME}/scripts/lock.sh
 ## Rofi: Window switcher, SSH, app launcher
 bindsym $mod+Tab exec rofi -show window
 bindsym $mod+Shift+s exec rofi -show ssh
-bindsym $mod+Control+r exec rofi -show drun
+bindsym $mod+Control+r exec rofi -show drun -show-icons
 
 ## Safe screen display fallback
 bindsym $mod+Control+Shift+s exec ${HOME}/scripts/fallback-monitor.sh
