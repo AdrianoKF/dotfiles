@@ -68,7 +68,9 @@ plugins=(
   emacs
   docker
   docker-compose
+  helm
   kubectl
+  kube-ps1
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -149,3 +151,7 @@ fi
 if [[ -f /etc/profile.d/vte.sh ]]; then
   source /etc/profile.d/vte.sh
 fi
+
+## kube-ps1 integration
+KUBE_PS1_SYMBOL_ENABLE=false
+RPROMPT='$(kube_ps1)'
