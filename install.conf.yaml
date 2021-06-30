@@ -23,5 +23,7 @@
                   create: true
           ~/.zshenv:
           ~/.config/dunst/dunstrc:
+          ~/.vimrc:
+          ~/.config/alacritty.yml:
 - shell:
           - git submodule sync --recursive
