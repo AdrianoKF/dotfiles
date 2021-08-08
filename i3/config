@@ -11,7 +11,7 @@
 
 set $mod Mod4
 
-set $term termite
+set $term alacritty
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -99,9 +99,10 @@ bindsym $mod+Control+l exec ${HOME}/scripts/lock.sh
 exec xautolock -time 10 -locker ${HOME}/scripts/lock.sh
 
 ## Rofi: Window switcher, SSH, app launcher
-bindsym $mod+Tab exec rofi -show window
+bindsym Mod1+Tab exec rofi -show window
 bindsym $mod+Shift+s exec rofi -show ssh
 bindsym $mod+Control+r exec rofi -show drun -show-icons
+bindsym Mod1+space exec rofi -show drun -show-icons
 
 ## Safe screen display fallback
 bindsym $mod+Control+Shift+s exec ${HOME}/scripts/fallback-monitor.sh
