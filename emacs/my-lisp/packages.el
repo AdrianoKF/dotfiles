@@ -4,7 +4,6 @@
  'package-archives
  '("melpa" . "http://melpa.org/packages/")
  t)
-(package-initialize)
 
 ;; Install use-package if needed
 (dolist (package '(use-package))
