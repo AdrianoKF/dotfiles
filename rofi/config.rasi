@@ -1,0 +1,4 @@
+configuration {
+  modi: "ssh,window,run,combi,drun";
+  theme: "/usr/share/rofi/themes/arthur.rasi";
+}
