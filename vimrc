@@ -1,6 +1,7 @@
 syntax on
 " autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
+set number
 set autoindent
 set expandtab
 set sts=2 ts=2 shiftwidth=2
