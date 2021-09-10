@@ -215,7 +215,7 @@ interval = 3.0
 
 format-connected = <label-connected>
 format-connected-underline = #9f78e1
-label-connected =  %essid% (%signal%%)
+label-connected =  %essid% (%signal%%) [%{F#0c0}%upspeed% ↑%{F-} | %{F#afc2e0}%downspeed% ↓%{F-}]
 
 format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}

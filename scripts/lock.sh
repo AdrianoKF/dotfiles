@@ -8,7 +8,11 @@ W='#880000bb'  # wrong
 V="$(xrdb -query | grep '*.color1:' | cut -f 2)bb"  # verifying
 
 lock_screen() {
-	~/scripts/i3lock-fancy-rapid 16 2 -n
+  if [[ -x $(which betterlockscreen) ]]; then
+    betterlockscreen -l dimblur
+  else
+	  ~/scripts/i3lock-fancy-rapid 16 2 -n
+  fi
 }
 
 pause_dunst() {
