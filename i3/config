@@ -20,7 +20,7 @@ font pango:monospace 8
 # Floating windows
 for_window [class="emoji-keyboard"] floating enable
 for_window [class="Gnome-calculator" instance="gnome-calculator"] floating enable
-for_window [window_role="volctl-osd"] floating enable, move container to workspace 4
+for_window [window_role="volctl-osd"] floating enable
 
 ## GAPS
 set $default_gaps_inner 5
@@ -103,6 +103,7 @@ bindsym Mod1+Tab exec rofi -show window
 bindsym $mod+Shift+s exec rofi -show ssh
 bindsym $mod+Control+r exec rofi -show drun -show-icons
 bindsym Mod1+space exec rofi -show drun -show-icons
+bindsym Ctrl+Mod1+period exec rofimoji  # emoji picker
 
 ## Safe screen display fallback
 bindsym $mod+Control+Shift+s exec ${HOME}/scripts/fallback-monitor.sh
