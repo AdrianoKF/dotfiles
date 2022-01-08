@@ -71,6 +71,7 @@ plugins=(
   helm
   kubectl
   kube-ps1
+  golang
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -105,20 +106,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export PATH="$PATH:$HOME/.local/bin"
-
-## WAL -- color schemes
-if [[ -d $HOME/.cache/wal ]]; then
-  # Import colorscheme from 'wal' asynchronously
-  # (cat ~/.cache/wal/sequences &)
-
-  # Restore wal settings
-  wal -r
-
-  # To add support for TTYs this line can be optionally added.
-  if [[ -f $HOME/.cache/wal/colors-tty.sh ]]; then
-    source $HOME/.cache/wal/colors-tty.sh
-  fi
-fi
 
 # Rust / Cargo
 if [[ -f ${HOME}/.cargo/env ]]; then
