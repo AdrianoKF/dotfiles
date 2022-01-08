@@ -1,29 +1,32 @@
 - clean: ["~", "~/.config"]
 - link:
-          ~/.xbindkeysrc: xbindkeys
-          ~/scripts:
-          ~/.config/rofi: rofi
-          ~/.config/autorandr: autorandr
-          ~/.emacs.d/lisp: emacs/lisp
-          ~/.emacs.d/my-lisp: emacs/my-lisp
-          ~/.emacs.d/themes: emacs/themes
-          ~/.emacs.d/init.el: emacs/init.el
-          ~/.gitconfig:
-                  create: true
-          ~/.config/picom.conf:
-          ~/.config/i3:
-                  create: true
-          ~/.config/termite:
-                  create: true
-          ~/.config/polybar:
-                  create: true
-          ~/.zshrc:
-                  create: true
-          ~/.zshenv:
-          ~/.config/dunst/dunstrc:
-          ~/.vimrc:
-          ~/.config/alacritty/alacritty.yml:
-                  create: true
-          ~/.config/betterlockscreenrc:
+    ~/.xbindkeysrc: xbindkeys
+    ~/scripts:
+        create: true
+    ~/.config/rofi: rofi
+    ~/.config/autorandr: autorandr
+    ~/.emacs.d/lisp: emacs/lisp
+    ~/.emacs.d/my-lisp: emacs/my-lisp
+    ~/.emacs.d/themes: emacs/themes
+    ~/.emacs.d/init.el: emacs/init.el
+    ~/.gitconfig:
+        create: true
+    ~/.config/picom.conf:
+    ~/.config/i3:
+        create: true
+    ~/.config/i3:
+        create: true
+    ~/.config/termite:
+        create: true
+    ~/.config/polybar:
+        create: true
+    ~/.zshrc:
+        create: true
+    ~/.zshenv:
+    ~/.config/dunst/dunstrc:
+    ~/.vimrc:
+    ~/.config/alacritty/alacritty.yml:
+        create: true
+    ~/.config/betterlockscreenrc:
 - shell:
-          - git submodule sync --recursive
+    - git submodule sync --recursive
