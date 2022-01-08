@@ -1,3 +1,8 @@
+# User bin/
+if [[ -d "$HOME/bin" ]]; then
+  export PATH="$HOME/bin:$PATH"
+fi
+
 # Pyenv setup
 if [[ -d "$HOME/.pyenv" ]]; then
 	export PYENV_ROOT="$HOME/.pyenv"
