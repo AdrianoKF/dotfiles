@@ -384,11 +384,10 @@ format = <label>
 format-underline = #1db954
 label-maxlen = 64
 label-padding = 2
-# exec = ~/scripts/spotify_status.py -f '{artist} - {song}'
-# exec = ~/scripts/player-icon.sh
-exec = playerctl metadata --format="{{emoji(status)}} {{xesam:artist}} - {{xesam:title}}" -F 2>/dev/null
-exec-if = [[ -x /usr/bin/playerctl ]] && pgrep -x spotify
-tail = true
+exec = ~/scripts/player-icon.sh
+exec-if = [[ -x /usr/bin/playerctl ]] && [[ -n $(playerctl -s --list-all) ]]
+click-left = playerctl play-pause
+tail = false
 
 [settings]
 screenchange-reload = true

@@ -7,6 +7,6 @@ if [[ ! -x $PLCTL_BIN ]]; then
 fi
 
 format='{{emoji(status)}} {{xesam:artist}} - {{xesam:title}}'
-title=$($PLCTL_BIN metadata --format="$format" 2>/dev/null)
+title=$($PLCTL_BIN metadata -s --format="$format" 2>/dev/null)
 
 echo -n $title
