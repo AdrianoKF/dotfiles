@@ -1,12 +1,12 @@
 env:
   TERM: xterm-256color
 
-draw_bold_text_with_bright_colors: false
-
-# Prevent automatic DPI detection, leading to inconsistent font sizes
-# See https://github.com/alacritty/alacritty/issues/1501#issuecomment-614867213
-env:
+  # Prevent automatic DPI detection, leading to inconsistent font sizes
+  # See https://github.com/alacritty/alacritty/issues/1501#issuecomment-614867213
   WINIT_X11_SCALE_FACTOR: "1.0"
+
+
+draw_bold_text_with_bright_colors: false
 
 font:
   use_thin_strokes: true
