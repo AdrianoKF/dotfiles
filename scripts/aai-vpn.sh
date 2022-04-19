@@ -7,7 +7,7 @@ AUTHGROUP=vpn01-le
 
 # GATEWAY=vpn02.aai.sh
 # CERT_FINGERPRINT="pin-sha256:QNKZ7jW3JXZCqtvjFDhJoBwm60ZQ3OA28dBuPRpHzAU="
-CERT_FINGERPRINT="pin-sha256:gLNMAfBFPCYFwYQJpRV+JXmJ0wHdE4QiUBbwTojTLKg="
+CERT_FINGERPRINT="pin-sha256:qKXYOg+Tb/8tbWvBS/lQuY/6RUB5OUUGYgmdiBoMrKk="
 #CERT_FINGERPRINT="pin-sha256:+9ZWopAZddZv+scPlYA+qpcAdNJcm8GdMtV5NlRbEjc="
 
 # sudo openconnect --user rumpold \
