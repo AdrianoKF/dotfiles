@@ -36,3 +36,13 @@ fi
 
 # VIM as default editor
 export EDITOR=vim
+
+# Fix gcloud warning
+#   To increase the performance of the tunnel, consider installing NumPy. For instructions,
+#   please see https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth
+# See: https://cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth
+export CLOUDSDK_PYTHON_SITEPACKAGES=1.
+
+# Fix for VS Code Live Share being broken
+# See:
+export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
