@@ -139,6 +139,11 @@ fi
 ## Termite VTE setup
 if [[ -f /etc/profile.d/vte.sh ]]; then
   source /etc/profile.d/vte.sh
+
+# fzf keybindings / completion
+if [[ -d /usr/share/fzf ]]; then
+  . /usr/share/fzf/completion.zsh
+  . /usr/share/fzf/key-bindings.zsh
 fi
 
 ## kube-ps1 integration
