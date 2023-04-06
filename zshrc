@@ -136,10 +136,6 @@ if [ -x "/usr/bin/yarn" ]; then
   export PATH="$(yarn global bin):$PATH"
 fi
 
-## Termite VTE setup
-if [[ -f /etc/profile.d/vte.sh ]]; then
-  source /etc/profile.d/vte.sh
-
 # fzf keybindings / completion
 if [[ -d /usr/share/fzf ]]; then
   . /usr/share/fzf/completion.zsh
