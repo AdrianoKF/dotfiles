@@ -11,8 +11,8 @@
 	while pgrep -u $UID -x polybar >/dev/null; do sleep 0.5; done
 
 	# Preferred output
-	preferred_tray_output=eDP1
-	fallback_tray_output=DP-0
+	preferred_tray_output=DP-0
+	fallback_tray_output=HDMI-0
 
 	BAR_NAME=top
 
@@ -22,7 +22,7 @@
 
 		# Set preferred tray output, if connected
 		for m in $outputs; do
-			if [[ $m == $preferred_tray_output ]]; then
+			if [[ $m == "$preferred_tray_output" ]]; then
 				tray_output=$m
 			fi
 		done
@@ -31,7 +31,7 @@
 		for m in $outputs; do
 			export MONITOR=$m
 			export TRAY_POSITION=none
-			if [[ $m == $tray_output ]]; then
+			if [[ $m == "$tray_output" ]]; then
 				TRAY_POSITION=right
 			fi
 
