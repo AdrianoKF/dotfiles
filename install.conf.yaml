@@ -14,8 +14,6 @@
     ~/.config/picom.conf:
     ~/.config/i3:
         create: true
-    ~/.config/i3:
-        create: true
     ~/.config/polybar:
         create: true
     ~/.zshrc:

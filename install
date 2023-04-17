@@ -13,3 +13,10 @@ git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+
+OS_ID=$(grep -oP '(?<=^ID=).+' /etc/os-release | tr -d '"')
+if [[ "$OS_ID" == "arch" || "$OS_ID" == "manjaro" ]]; then
+    ARCH_CONFIG="install-arch.conf.yaml"
+    echo "Installing additional dotfiles for Arch Linux systems from ${ARCH_CONFIG}."
+    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${ARCH_CONFIG}" "${@}"
+fi
