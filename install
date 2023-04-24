@@ -1,22 +1,40 @@
 #!/usr/bin/env bash
-
 set -e
 
-CONFIG="install.conf.yaml"
+MAIN_CONFIG=install.conf.yaml
 DOTBOT_DIR="dotbot"
 
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+_install() {
+    CONFIG=$1
+    shift
+    ARGS=("$@")
+
+    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${ARGS[@]}"
+}
+
+# Dotbot setup
 cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
-"${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
+# Install main config
+_install "$MAIN_CONFIG" "${@}"
 
+# Arch/Manjaro-specific config (install-arch.conf.yaml)
 OS_ID=$(grep -oP '(?<=^ID=).+' /etc/os-release | tr -d '"')
 if [[ "$OS_ID" == "arch" || "$OS_ID" == "manjaro" ]]; then
     ARCH_CONFIG="install-arch.conf.yaml"
     echo "Installing additional dotfiles for Arch Linux systems from ${ARCH_CONFIG}."
-    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${ARCH_CONFIG}" "${@}"
+    _install "$ARCH_CONFIG" "${@}"
+fi
+
+# Host-specific dotfiles (pattern: install-[HOSTNAME].conf.yaml)
+HOSTNAME=$(hostname)
+HOST_CONFIG="install-$HOSTNAME.conf.yaml"
+if [[ -f "$HOST_CONFIG" ]]; then
+    echo "Installing host-specific dotfiles from ${HOST_CONFIG}"
+    _install "$HOST_CONFIG" "${@}"
 fi
