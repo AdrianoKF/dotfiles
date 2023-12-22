@@ -46,3 +46,5 @@ gs $GS_OPTS \
   -c "[/CropBox [0 420.945 595.28 841.89]" \
   -c " /PAGES pdfmark" \
   -f $input_file
+
+evince out.pdf&
