@@ -21,7 +21,7 @@
     ~/.zshenv:
     ~/.config/dunst/dunstrc:
     ~/.vimrc:
-    ~/.config/alacritty/alacritty.yml:
+    ~/.config/alacritty/alacritty.toml:
         create: true
     ~/.config/betterlockscreenrc:
     ~/.config/git/ignore:
