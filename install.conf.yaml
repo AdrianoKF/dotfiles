@@ -27,5 +27,6 @@
     ~/.config/git/ignore:
         path: gitignore-global
         create: true
+    ~/.config/direnv/direnvrc:
 - shell:
     - git submodule sync --recursive
