@@ -2,21 +2,22 @@
 set -e
 
 MAIN_CONFIG=install.conf.yaml
-DOTBOT_DIR="dotbot"
 
-DOTBOT_BIN="bin/dotbot"
-BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BASEDIR=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
+DOTBOT_DIR="${BASEDIR}/dotbot"
+DOTBOT_BIN="${DOTBOT_DIR}/bin/dotbot"
 
 _install() {
-    CONFIG=$1
+    local config=$1
     shift
-    ARGS=("$@")
+    local args=("$@")
 
-    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${ARGS[@]}"
+    "${DOTBOT_BIN}" -d "${BASEDIR}" -c "${config}" "${args[@]}"
 }
 
-# Dotbot setup
 cd "${BASEDIR}"
+
+# Dotbot setup
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
