@@ -1,1 +1,4 @@
 .sandbox/
+.envrc
+.direnv/
+**/.DS_Store
