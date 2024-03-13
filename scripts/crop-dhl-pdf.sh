@@ -1,3 +1,4 @@
+#!/bin/bash
 set -euo pipefail
 
 input_file=$1
@@ -7,27 +8,19 @@ if [[ ! -f "$input_file" ]]; then
   exit 1
 fi
 
-OPTIONS=v
-PARSED_OPTS=$(getopt --options=$OPTIONS --name "$0" -- "$@")
-eval set -- "$PARSED_OPTS"
-
 verbose=n
-while true; do
-  case "$1" in
-    -v)
+
+while getopts "v" opt; do
+  case $opt in
+    v)
       verbose=y
-      shift
       ;;
-    --)
-      shift
-      break
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
       ;;
-    *)
-      echo "Programming error"
-      exit 3
-      ;;
-    esac
+  esac
 done
+shift $((OPTIND - 1))
 
 echo "Options: verbose=$verbose"
 
@@ -38,13 +31,19 @@ fi
 
 echo "GS options: $GS_OPTS"
 
-gs $GS_OPTS \
+gs "$GS_OPTS" \
   -o out.pdf \
   -sDEVICE=pdfwrite \
   -dNOPAUSE \
   -dBATCH \
   -c "[/CropBox [0 420.945 595.28 841.89]" \
   -c " /PAGES pdfmark" \
-  -f $input_file
+  -f "$input_file"
 
-evince out.pdf&
+declare VIEW_CMD
+if [ "$(uname)" == "Darwin" ]; then
+  VIEW_CMD="open"
+else
+  VIEW_CMD="evince"
+fi
+$VIEW_CMD out.pdf&
