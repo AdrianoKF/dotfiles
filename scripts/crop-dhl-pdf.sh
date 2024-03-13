@@ -1,13 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-input_file=$1
-
-if [[ ! -f "$input_file" ]]; then
-  echo "Input file '$input_file' does not exist or is unreadable, aborting." > /dev/stderr
-  exit 1
-fi
-
 verbose=n
 
 while getopts "v" opt; do
@@ -22,7 +15,14 @@ while getopts "v" opt; do
 done
 shift $((OPTIND - 1))
 
-echo "Options: verbose=$verbose"
+input_file=$1
+
+echo "Options: verbose=$verbose, input file=$input_file"
+
+if [[ ! -f "$input_file" ]]; then
+  echo "Input file '$input_file' does not exist or is unreadable, aborting." > /dev/stderr
+  exit 1
+fi
 
 GS_OPTS=""
 if [[ $verbose == "n" ]]; then
