@@ -2,3 +2,5 @@
 .envrc
 .direnv/
 **/.DS_Store
+.python-version
+*.code-workspace

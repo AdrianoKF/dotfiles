@@ -1,34 +1,66 @@
 [user]
-	name = Adrian Rumpold
-	email = a.rumpold@gmail.com
+name = Adrian Rumpold
+email = a.rumpold@gmail.com
 
 [pull]
-	ff = only
+ff = only
 
 [core]
-    pager = delta
-	autocrlf = input
+pager = delta
+autocrlf = input
 
 [interactive]
-    diffFilter = delta --color-only
+diffFilter = delta --color-only
 
 [delta]
-    features = side-by-side line-numbers decorations
-    whitespace-error-style = 22 reverse
+features = side-by-side line-numbers decorations
+whitespace-error-style = 22 reverse
 
 [delta "decorations"]
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
-    file-decoration-style = none
-[filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-[init]
-	defaultBranch = main
-[merge]
-	conflictstyle = zdiff3
+commit-decoration-style = bold yellow box ul
+file-style = bold yellow ul
+file-decoration-style = none
 
-[url "ssh://git@gitlab.aai.sh/"]
-	insteadOf = https://gitlab.aai.sh/
+[filter "lfs"]
+required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+
+[init]
+defaultBranch = main
+
+[merge]
+conflictstyle = zdiff3
+
+[rebase]
+autoSquash = true
+updateRefs = true
+
+[branch]
+sort = -committerdate
+
+[tag]
+# treat dotted version numbers as a series of integer values for sorting purposes
+sort = version:refname
+
+[push]
+default = simple
+autoSetupRemote = true
+followTags = true
+
+[fetch]
+prune = true
+pruneTags = true
+all = true
+
+[commit]
+# include diffs in commit message editor
+verbose = true
+
+[rerere]
+enabled = true
+autoupdate = true
+
+[column]
+ui = auto
