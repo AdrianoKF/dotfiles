@@ -20,3 +20,11 @@ set sts=2 ts=2 shiftwidth=2
 map <C-n> :NERDTreeToggle<CR>
 " Auto-close if only nerdtree is left
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+""" Local inclusions
+try
+  source ~/.vimrc.local
+catch
+  " Ignore missing file
+endtry
+
