@@ -27,6 +27,7 @@
     ~/.vimrc:
     ~/.config/alacritty/alacritty.toml:
         create: true
+    ~/.config/nvim: nvim
     ~/.config/betterlockscreenrc:
     ~/.config/git/ignore:
         path: gitignore-global
