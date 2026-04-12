@@ -145,3 +145,25 @@ fi
 ## kube-ps1 integration
 KUBE_PS1_SYMBOL_ENABLE=false
 RPROMPT='$(kube_ps1)'
+
+# Set Agnoster prompt color based on hostname
+function host_prompt_color() {
+  local host="${HOST:-$(hostname)}"
+  local hash=0
+  local i char
+  local -a colors=(24 31 37 64 70 94 100 130 136 166 172 178)
+
+  for (( i = 1; i <= ${#host}; i++ )); do
+    char=$(printf '%d' "'${host[i]}")
+    hash=$(( (hash * 33 + char) % 100000 ))
+  done
+
+  echo "${colors[$(( (hash % ${#colors[@]}) + 1 ))]}"
+}
+
+function prompt_dir() {
+  local bg
+  bg=$(host_prompt_color)
+  prompt_segment "$bg" white '%~'
+}
+
