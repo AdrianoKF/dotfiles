@@ -23,4 +23,5 @@ fi
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 mapfile -t pkgs < <(grep -vE '^\s*(#|$)' "$SCRIPT_DIR/arch.txt")
-yay -S --needed --noconfirm "${pkgs[@]}"
+mapfile -t missing < <(pacman -T "${pkgs[@]}" || true)
+[[ ${#missing[@]} -gt 0 ]] && yay -S --needed --noconfirm "${missing[@]}"
