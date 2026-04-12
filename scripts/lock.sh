@@ -17,12 +17,12 @@ lock_screen() {
 
 pause_dunst() {
 #	notify-send "DUNST_COMMAND_PAUSE"
-	killall -SIGUSR1 dunst
+  dunstctl set-paused true
 }
 
 unpause_dunst() {
 #	notify-send "DUNST_COMMAND_RESUME"
-	killall -SIGUSR2 dunst
+  dunstctl set-paused false
 }
 
 pause_dunst
