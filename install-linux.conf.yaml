@@ -1,0 +1,8 @@
+- shell:
+    - description: Install acpi configuration
+      command: |
+        sudo install -Dm755 acpi/brightness.sh /etc/acpi/brightness.sh
+        sudo install -Dm644 acpi/events/brightness /etc/acpi/events/brightness
+      stdin: true
+      stdout: true
+      stderr: true

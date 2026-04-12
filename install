@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
 
 MAIN_CONFIG=install.conf.yaml
 
@@ -21,14 +21,26 @@ cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
+"${DOTBOT_BIN}" --version
+
 # Install main config
 _install "$MAIN_CONFIG" "${@}"
+
+# Linux-specific config (install-linux.conf.yaml)
+if [[ "$(uname -s)" == "Linux" ]]; then
+    LINUX_CONFIG="install-linux.conf.yaml"
+    echo "Installing Linux-specific dotfiles from ${LINUX_CONFIG}."
+    _install "$LINUX_CONFIG" "${@}"
+fi
 
 # Arch/Manjaro-specific config (install-arch.conf.yaml)
 OS_ID=$(grep -oP '(?<=^ID=).+' /etc/os-release | tr -d '"')
 if [[ "$OS_ID" == "arch" || "$OS_ID" == "manjaro" ]]; then
+    echo "Installing packages for Arch-based systems."
+    ./packages/arch.sh
+
     ARCH_CONFIG="install-arch.conf.yaml"
-    echo "Installing additional dotfiles for Arch Linux systems from ${ARCH_CONFIG}."
+    echo "Installing additional dotfiles for Arch-based systems from ${ARCH_CONFIG}."
     _install "$ARCH_CONFIG" "${@}"
 fi
 
