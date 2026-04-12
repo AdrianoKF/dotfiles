@@ -3,12 +3,13 @@
 control_file=/sys/class/backlight/intel_backlight/brightness
 brightness_val=$(sudo cat $control_file)
 max_brightness=$(sudo cat /sys/class/backlight/intel_backlight/max_brightness)
-step=100
+step=$(( 5 * $max_brightness / 100 ))
 
 if [ "$2" != "" ]; then
    echo "Using custom step: $2"
    step=$2
 fi
+echo "step=$step"
 
 if [ "$1" == "down" ]; then
     brightness_val=$(($brightness_val - $step))
