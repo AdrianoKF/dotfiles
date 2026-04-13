@@ -51,3 +51,6 @@ hyprpaper
 qt5-wayland
 qt6-wayland
 waybar
+greetd
+greetd-regreet
+cage

@@ -6,3 +6,8 @@
       stdin: true
       stdout: true
       stderr: true
+    - description: Install greetd configuration
+      command: |
+        sudo install -Dm644 greetd/config.toml /etc/greetd/config.toml
+        sudo install -Dm644 greetd/regreet.toml /etc/greetd/regreet.toml
+
