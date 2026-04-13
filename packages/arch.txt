@@ -1,7 +1,4 @@
 i3-wm
-sway
-swayidle
-swaylock
 picom
 autorandr
 xorg-xrandr
@@ -48,4 +45,8 @@ kvantum
 qt5ct
 qt6ct
 hyprland
+hypridle
+hyprlock
+qt5-wayland
+qt6-wayland
 waybar
