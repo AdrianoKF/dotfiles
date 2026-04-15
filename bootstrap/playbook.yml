@@ -1,0 +1,178 @@
+---
+- name: Bootstrap this workstation
+  hosts: localhost
+  connection: local
+  gather_facts: true
+
+  vars:
+    ansible_python_interpreter: "{{ ansible_playbook_python }}"
+    bootstrap_yay: true
+    is_arch_family: "{{ ansible_facts.distribution in ['Archlinux', 'Manjaro'] }}"
+    arch_package_file: "{{ playbook_dir }}/../packages/arch.txt"
+
+  tasks:
+    - name: packages | Read Arch package list
+      ansible.builtin.set_fact:
+        arch_packages: >-
+          {{
+            lookup('ansible.builtin.file', arch_package_file)
+            .splitlines()
+            | reject('match', '^\\s*(#|$)')
+            | list
+          }}
+      when: is_arch_family
+      tags:
+        - packages
+        - arch
+
+    - name: packages | Check whether yay is installed
+      ansible.builtin.command:
+        argv: [bash, -lc, "command -v yay"]
+      register: yay_query
+      changed_when: false
+      failed_when: false
+      when: is_arch_family
+      tags:
+        - packages
+        - arch
+        - yay
+
+    - name: packages | Install yay build dependencies
+      ansible.builtin.command:
+        argv:
+          - pacman
+          - -Sy
+          - --needed
+          - --noconfirm
+          - git
+          - base-devel
+      become: true
+      when:
+        - is_arch_family
+        - bootstrap_yay | bool
+        - yay_query.rc != 0
+      tags:
+        - packages
+        - arch
+        - yay
+
+    - name: packages | Build and install yay
+      ansible.builtin.shell: |
+        set -euo pipefail
+        tmpdir="$(mktemp -d)"
+        trap 'rm -rf "$tmpdir"' EXIT
+        git clone https://aur.archlinux.org/yay.git "$tmpdir/yay"
+        cd "$tmpdir/yay"
+        makepkg -si --noconfirm
+      args:
+        executable: /bin/bash
+      when:
+        - is_arch_family
+        - bootstrap_yay | bool
+        - yay_query.rc != 0
+      tags:
+        - packages
+        - arch
+        - yay
+
+    - name: packages | Check for missing Arch packages
+      ansible.builtin.command:
+        argv: "{{ ['pacman', '-T'] + arch_packages }}"
+      register: missing_arch_packages
+      changed_when: false
+      failed_when: false
+      when: is_arch_family
+      tags:
+        - packages
+        - arch
+
+    - name: packages | Install missing Arch packages
+      ansible.builtin.command:
+        argv: "{{ ['yay', '-S', '--needed', '--noconfirm'] + missing_arch_packages.stdout_lines }}"
+      when:
+        - is_arch_family
+        - missing_arch_packages.stdout_lines | length > 0
+      tags:
+        - packages
+        - arch
+
+    - name: acpi | Create config directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+      become: true
+      loop:
+        - /etc/acpi
+        - /etc/acpi/events
+      when: ansible_facts.system == "Linux"
+      tags:
+        - system
+        - acpi
+
+    - name: acpi | Install brightness helper
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../acpi/brightness.sh"
+        dest: /etc/acpi/brightness.sh
+        owner: root
+        group: root
+        mode: "0755"
+      become: true
+      when: ansible_facts.system == "Linux"
+      tags:
+        - system
+        - acpi
+
+    - name: acpi | Install brightness event
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../acpi/events/brightness"
+        dest: /etc/acpi/events/brightness
+        owner: root
+        group: root
+        mode: "0644"
+      become: true
+      when: ansible_facts.system == "Linux"
+      tags:
+        - system
+        - acpi
+
+    - name: greetd | Create config directory
+      ansible.builtin.file:
+        path: /etc/greetd
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+      become: true
+      when: ansible_facts.system == "Linux"
+      tags:
+        - system
+        - greetd
+
+    - name: greetd | Install daemon config
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../greetd/config.toml"
+        dest: /etc/greetd/config.toml
+        owner: root
+        group: root
+        mode: "0644"
+      become: true
+      when: ansible_facts.system == "Linux"
+      tags:
+        - system
+        - greetd
+
+    - name: greetd | Install regreet config
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../greetd/regreet.toml"
+        dest: /etc/greetd/regreet.toml
+        owner: root
+        group: root
+        mode: "0644"
+      become: true
+      when: ansible_facts.system == "Linux"
+      tags:
+        - system
+        - greetd

@@ -1,0 +1,3 @@
+# Keep this intentionally small. The smoke test verifies that the package path
+# works without installing the full desktop stack from packages/arch.txt.
+jq
