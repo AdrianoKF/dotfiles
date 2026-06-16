@@ -268,19 +268,26 @@ label:focus {
 }
 
 #keyboard-state {
-    background: #97e1ad;
-    color: #000000;
-    padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
 }
 
 #keyboard-state > label {
-    padding: 0 5px;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+    font-size: 0;
 }
 
-#keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
+#keyboard-state > label.capslock.locked {
+    background: #97e1ad;
+    color: #000000;
+    border-radius: 6px;
+    padding: 0 5px;
+    margin: 0 5px;
+    min-width: 16px;
+    font-size: inherit;
 }
 
 #scratchpad {
