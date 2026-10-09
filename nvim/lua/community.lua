@@ -8,6 +8,6 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.diagnostics.trouble-nvim" },
-  { import = "astrocommunity.recipes.ai" },
-  { import = "astrocommunity.completion.copilot-lua-cmp" },
+--  { import = "astrocommunity.recipes.ai" },
+--  { import = "astrocommunity.completion.copilot-lua-cmp" },
 }
